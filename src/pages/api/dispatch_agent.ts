@@ -27,7 +27,7 @@ export default async function handleDispatchAgent(
     
         res.status(200).json(result);
     } catch (e) {
-        res.statusMessage = (e as Error).message;
-        res.status(500).end();
+        console.error('Error dispatching agent:', e);
+        res.status(500).json({ error: (e as Error).message });
     }
 }
