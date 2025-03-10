@@ -62,7 +62,7 @@ export const ConnectionProvider = ({
         if (config.settings.participant_name) {
           params.append('participantName', config.settings.participant_name);
         }
-        const { accessToken } = await fetch(`/api/token?${params}`).then((res) =>
+        const { accessToken } = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/token?${params}`).then((res) =>
           res.json()
         );
         token = accessToken;
@@ -88,7 +88,7 @@ export const ConnectionProvider = ({
     params.append('roomName', roomName);
     params.append('agentName', agentName);
     params.append('metadata', JSON.stringify(metadata));
-    const response = await fetch(`/api/dispatch_agent?${params}`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/dispatch_agent?${params}`);
     return response.json();
   }, []);
 

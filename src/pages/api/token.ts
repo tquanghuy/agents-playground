@@ -49,7 +49,7 @@ export default async function handleToken(
 
     res.status(200).json(result);
   } catch (e) {
-    res.statusMessage = (e as Error).message;
-    res.status(500).end();
-  }
+    console.error('Error Create Token:', e);
+    res.status(500).json({ error: (e as Error).message });
+}
 }
